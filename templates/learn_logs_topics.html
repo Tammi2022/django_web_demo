@@ -1,17 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Learn Logs Index</title>
-</head>
-<body>
- <p>Topics</p>
- <ul>
-     {% for topic in topics %}
- <li>{{ topic }}</li>
- {% empty %}
- <li>No topics have been added yet.</li>
- {% endfor %}
- </ul>
-</body>
-</html>
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Learn Logs Topic List</title>#}
+{#</head>#}
+{#<body>#}
+{# <p>Topics</p>#}
+{# <ul>#}
+{#     {% for topic in topics %}#}
+{# <li>{{ topic }}</li>#}
+{# {% empty %}#}
+{# <li>No topics have been added yet.</li>#}
+{# {% endfor %}#}
+{# </ul>#}
+{#</body>#}
+{#</html>#}
+
+{% extends "base.html" %}
+{% block content %}
+    <p>Topics</p>
+    <ul>
+        {% for topic in topics %}
+            <li>{{ topic }}</li>
+        {% empty %}
+            <li>No topics have been added yet.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'learn_logs_new_topic' %}">Add a new topic</a>
+
+{% endblock content %}
