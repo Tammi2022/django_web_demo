@@ -22,11 +22,14 @@
     <ul>
         {% for topic in topics %}
             <li>{{ topic }}</li>
+            <p>
+                <a href="{% url 'learn_logs_topic_details' topic.id %}">topic details</a>
+            </p>
         {% empty %}
             <li>No topics have been added yet.</li>
         {% endfor %}
     </ul>
 
-    <a href="{% url 'learn_logs_new_topic' %}">Add a new topic</a>
+    <a href="{% url 'learn_logs_topic_new' %}">Add a new topic</a>
 
 {% endblock content %}

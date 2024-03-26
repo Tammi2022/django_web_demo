@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.views import View
 
 from learn_logs.forms import TopicForm, EntryForm
-from learn_logs.models import Topic
+from learn_logs.models import Topic, Entry
 from utils.auth import auth
 from utils.obj_response import ObjectResp
 
@@ -75,3 +75,20 @@ class NewEntryLearnLogsView(View):
             new_entry.topic = topic
             new_entry.save()
         return HttpResponseRedirect(reverse('learn_logs_topic_details', args=[topic_id]))
+
+
+class DetailsEntryLearnLogsView(View):
+    def get(self, request, entry_id):
+        entry = Entry.objects.get(id=entry_id)
+        topic = entry.topic
+        form = EntryForm(instance=entry)
+        context = {'entry': entry, 'topic': topic, 'form': form}
+        return render(request, 'learn_logs_entry_details.html', context)
+
+    def post(self, request, entry_id):
+        entry = Entry.objects.get(id=entry_id)
+        topic = entry.topic
+        form = EntryForm(instance=entry,data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('learn_logs_topic_details', args=[topic.id]))

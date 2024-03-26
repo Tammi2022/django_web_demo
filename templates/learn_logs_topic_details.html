@@ -7,12 +7,15 @@
             <li>
                 <p>{{ entry.date_added|date:'M d, Y H:i' }}</p>
                 <p>{{ entry.text|linebreaks }}</p>
+                <p>
+                    <a href="{% url 'learn_logs_entry_details' entry.id %}">entry details</a>
+                </p>
             </li>
         {% empty %}
             <li>This are no entries for this topic yet
         {% endfor %}
     </url>
     <p>
-        <a href="{% url 'learn_logs_new_entry' topic.id %}">add a new entry</a>
+        <a href="{% url 'learn_logs_entry_new' topic.id %}">add a new entry</a>
     </p>
 {% endblock content %}
