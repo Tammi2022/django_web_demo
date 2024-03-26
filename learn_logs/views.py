@@ -19,3 +19,9 @@ class ExportLearnLogsView(View):
 class IndexLearnLogsView(View):
     def get(self, request):
         return render(request, 'learn_logs_index.html')
+
+
+# def index(request):
+#     """学习笔记的主页"""
+#     # return render(request, 'learning_logs/index.html')
+#     return render(request, 'learn_logs_index.html')
