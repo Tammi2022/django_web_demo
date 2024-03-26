@@ -34,3 +34,11 @@ class ListLearnLogsView(View):
         topics = Topic.objects.order_by('date_added')
         context = {'topics': topics}
         return render(request, 'learn_logs_topics.html', context)
+
+
+class DetailsLearnLogsView(View):
+    def get(self, request, id):
+        topic = Topic.objects.get(id=id)
+        entries = topic.entry_set.order_by('-date_added')
+        context = {'topic': topic, 'entries': entries}
+        return render(request, 'learn_logs_details.html', context)
