@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -88,7 +89,7 @@ class DetailsEntryLearnLogsView(View):
     def post(self, request, entry_id):
         entry = Entry.objects.get(id=entry_id)
         topic = entry.topic
-        form = EntryForm(instance=entry,data=request.POST)
+        form = EntryForm(instance=entry, data=request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('learn_logs_topic_details', args=[topic.id]))
