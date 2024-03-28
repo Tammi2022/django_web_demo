@@ -21,4 +21,5 @@ import learn_logs
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('learn_logs/', include("learn_logs.urls")),
+    path('users/', include("users.urls")),
 ]
